@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router';
 import logo from '../../../assets/logo.png'
 const Navbar = () => {
-    const user='indrojit';
+    const user='Indrojit';
     return (
-        <div className="relative bg-[#0E151F] text-white flex justify-between px-5  items-center">
+        <div className="relative bg-[#0E151F] text-white flex justify-between px-5 py-2 items-center">
       <img className='w-30 h-20' src={logo} alt="" />
 
   <div
     
-    className="absolute left-1/2 transform -translate-x-1/2 flex gap-4 text-lg"
+    className="absolute left-1/2 transform -translate-x-1/2 flex gap-4 text-xl"
   >
     <Link to="/">Home</Link>
     <Link to="/">Apartment</Link>
@@ -31,7 +31,7 @@ const Navbar = () => {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+        className="menu menu-sm dropdown-content bg-[#0E151F]  rounded-box z-1 mt-3 w-52 p-2 shadow"
       >
         <li>
           <h2>{user}</h2>
