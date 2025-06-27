@@ -1,77 +1,55 @@
 import React, { useState } from 'react';
-import logo from '../../../assets/logo.png'
-import logInLottieAnimation from './loginLottie.json'
-import Lottie from 'react-lottie';
-
-import { FiEye } from "react-icons/fi";
-import { FiEyeOff } from "react-icons/fi";
 import { Link } from 'react-router';
-const Login = () => {
-    const [showPassword, setShowPassword] = useState(false);
-
-    const handlePasswordShow = () => {
+import logo from '../../../assets/logo.png'
+import { useForm } from 'react-hook-form';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
+import Lottie from 'lottie-react';
+import registerLottieAnimation from './registerLottifie.json'
+const SignUp = () => {
+    const {
+        register,
+        handleSubmit,
+        watch,
+        reset,
+        formState: { errors },
+      } = useForm();
+      const [showPassword, setShowPassword] = useState(false);
+      const handlePasswordShow = () => {
         setShowPassword(!showPassword);
-    }
-    const handleGoogleSignIn = () => {
+       }
+       const handleGoogleSignIn = ()=>{
 
-    }
-    const handleSignIn = (e) => {
-        e.preventDefault();
-
-    }
+       }
+       const onSubmit = (data) => console.log(data);
     return (
-        <div>
+        <div className=''>
             <Link to={'/'}>
 
                 <img className='h-60 mx-auto pt-5' src={logo} alt="" />
 
             </Link>
-
+           
             <div className='flex pt-6 justify-center'>
                 <p className=' text-xl font-bold text-center text-gray-600 '>
-                    Sign In <br />
+                    Sign Up <br />
 
                 </p>
 
             </div>
-      
-
             
-            <div className='flex justify-center'>
-               
 
-            </div>
-            <div className='flex  min-h-[calc(100vh-306px)] my-12'>
 
-                <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
-                    <div
-                        className='hidden bg-cover bg-center lg:block lg:w-1/2'
-                   
-                    >
+            <div className='flex  min-h-[calc(100vh-306px)] '>
 
-                       
-                        <Lottie
-                            options={{
-                                loop: true,
-                                autoplay: true,
-                                animationData: logInLottieAnimation,
-                                rendererSettings: {
-                                    preserveAspectRatio: 'xMidYMid slice',
-                                },
-                            }}
-                            height={300}
-                            width={300}
-                        /> 
-                         {/* <Lottie className='h-full' animationData={logInLottieAnimation} loop={true} /> 
-                    */}
-                    </div>
 
+                <div className='flex w-full max-w-sm mx-auto overflow-hidden  bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
                     <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
+                        <div className='flex justify-center mx-auto'>
+                       
+
+                        </div>
 
 
-                        <p className='mt-3 text-xl text-center text-gray-600 '>
-                            Welcome back!
-                        </p>
 
                         <div
                             onClick={handleGoogleSignIn}
@@ -99,37 +77,55 @@ const Login = () => {
                             </div>
 
                             <span className='w-5/6 px-4 py-3 font-bold text-center'>
-                                Sign in with Google
+                                Sign Up with Google
                             </span>
                         </div>
 
                         <div className='flex items-center justify-between mt-4'>
                             <span className='w-1/5 border-b  lg:w-1/4'></span>
 
-                            <div className='text-xs text-center text-gray-500 uppercase  hover:underline'>
-                                or login with email
-                            </div>
+                           
 
                             <span className='w-1/5 border-b dark:border-gray-400 lg:w-1/4'></span>
                         </div>
-                        <form onSubmit={handleSignIn}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                         
+                            <div className='text-xs text-center text-gray-500 uppercase  hover:underline'>
+                                or Registration with email
+                            </div>
+                            <div className='mt-4'>
+                                <label
+                                    className='block mb-2 text-sm font-medium text-gray-600 '
+                                    htmlFor='name'
+                                >
+                                    Name
+                                </label>
+                                <input
+                                    id='name'
+                                    autoComplete='name'
+                                    {...register('name',{required: true})}
+                                    
+                                    
+                                    className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
+                                    type='text'
+                                />
+                            </div>
                             <div className='mt-4'>
                                 <label
                                     className='block mb-2 text-sm font-medium text-gray-600 '
                                     htmlFor='LoggingEmailAddress'
                                 >
-                                    Email Address
+                                    Email
                                 </label>
                                 <input
                                     id='LoggingEmailAddress'
                                     autoComplete='email'
                                     name='email'
-                                    required
+                                    {...register('email',{required: true})}
                                     className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
                                     type='email'
                                 />
                             </div>
-
                             <div className='mt-4 relative'>
                                 <div className='flex justify-between'>
                                     <label
@@ -143,42 +139,66 @@ const Login = () => {
                                 <input
                                     id='loggingPassword'
                                     autoComplete='current-password'
-                                    name='password'
+                                    {...register('password',{
+                                        required: true,
+                                        minLength: 6,
+                
+                                        pattern: /(?=.*?[A-Z])(?=.*?[a-z])/,
+                                    })}
                                     className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
-                                    required
+
                                     type={showPassword ? 'text' : 'password'}
+
                                 />
                                 <button type='button' onClick={handlePasswordShow} className='absolute right-4 top-10'> {showPassword ? <FiEye /> : <FiEyeOff />}  </button>
 
                             </div>
-                            <div className='mt-6'>
-                                <button
-                                    type='submit'
-                                    className='w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50'
-                                >
-                                    Sign In
-                                </button>
+                           
+
+                           
+
+                            <div className=" form-control mt-6">
+                                <input type="submit" className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" value={'Sign Up'} />
+
                             </div>
+
+
                         </form>
 
                         <div className='flex items-center justify-between mt-4'>
                             <span className='w-1/5 border-b  md:w-1/4'></span>
 
                             <Link
-                                to='/signUp'
+                                to='/login'
                                 className='text-xs text-gray-500 uppercase  hover:underline'
                             >
-                                or sign up
+                                or sign in
                             </Link>
 
                             <span className='w-1/5 border-b  md:w-1/4'></span>
                         </div>
                     </div>
+                    <div className='hidden bg-cover bg-center lg:block lg:w-1/2'>
+                        
+                        {/* <Lottie
+                            options={{
+                                loop: true,
+                                autoplay: true,
+                                animationData: registerLottieAnimation,
+                                rendererSettings: {
+                                    preserveAspectRatio: 'xMidYMid slice',
+                                },
+                            }}
+                            height={300}
+                            width={300}
+                        /> */}
+                        <Lottie className='h-full' animationData={registerLottieAnimation} loop={true} /> 
+                    </div>
                 </div>
             </div>
-
+            {/* <Footer></Footer> */}
         </div>
     );
 };
 
-export default Login;
+export default SignUp;

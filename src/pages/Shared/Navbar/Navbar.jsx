@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import logo from '../../../assets/logo.png'
 const Navbar = () => {
-    const user='Indrojit';
+    const user='';
     return (
         <div className="relative bg-[#0E151F] text-white flex justify-between px-5 py-2 items-center">
       <img className='w-30 h-20' src={logo} alt="" />

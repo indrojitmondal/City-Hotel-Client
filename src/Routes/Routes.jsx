@@ -10,6 +10,7 @@ import Login from "../pages/Shared/Login/Login";
 import Main from "../Layout/Main";
 import Banner from "../components/Banner/Banner";
 import Home from "../pages/Home/Home";
+import SignUp from "../pages/Shared/Register/signUp";
   
   export const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ import Home from "../pages/Home/Home";
     {
       path: '/login',
       element: <Login></Login>
+    },
+    {
+      path: '/signUp',
+      element: <SignUp></SignUp>
     }
   ]);
 
