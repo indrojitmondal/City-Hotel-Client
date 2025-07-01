@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router';
 import logo from '../../../assets/logo.png'
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 const Navbar = () => {
      const {user, logOut}= useAuth();
      console.log(user); 
@@ -30,7 +30,7 @@ const Navbar = () => {
 
   {user && (
     <div className=" dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar ">
         <div className="w-30   rounded-full">
           <img 
             className=''
@@ -51,6 +51,7 @@ const Navbar = () => {
       </ul>
     </div>
   )}
+
 </div>
 
     );

@@ -6,7 +6,7 @@ import Lottie from 'react-lottie';
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from 'react-router';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);

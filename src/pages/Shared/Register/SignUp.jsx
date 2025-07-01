@@ -5,9 +5,10 @@ import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import Lottie from 'lottie-react';
 import registerLottieAnimation from './registerLottifie.json'
-import useAxiosPublic from '../../hooks/useAxiosPublic';
-import useAuth from '../../hooks/useAuth';
+
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import useAuth from '../../../hooks/useAuth';
 const image_hosting_key=import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const SignUp = () => {
