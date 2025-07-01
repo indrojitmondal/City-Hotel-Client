@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import logo from '../../../assets/logo.png'
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import Lottie from 'lottie-react';
 import registerLottieAnimation from './registerLottifie.json'
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
+const image_hosting_key=import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const SignUp = () => {
+    const navigate= useNavigate();
+    const [signUpError, setSignUpError]= useState('');
     const {
         register,
         handleSubmit,
@@ -17,10 +24,57 @@ const SignUp = () => {
       const handlePasswordShow = () => {
         setShowPassword(!showPassword);
        }
+
+       const {createUser,updateUserProfile, logOut}= useAuth();
+
+       const axiosPublic = useAxiosPublic();
       
-       const onSubmit = (data) => console.log(data);
+       const onSubmit = async(data) => {
+        console.log(data);
+        const imageFile= {image: data.image[0]}
+        const res= await axiosPublic.post(image_hosting_api, imageFile,{
+            headers: {'content-type': 'multipart/form-data'}
+         })
+       
+        createUser(data.email, data.password)
+        .then(result=>{
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            if(res.data.success){
+                const menuItem={
+                    name: data.name,
+                    email: data.email,
+                    image: res.data.data.display_url
+                }
+                console.log(menuItem);
+                updateUserProfile(menuItem.name, menuItem.image)
+                .then(()=>{
+                      
+                    logOut()
+                    .then(() => {
+                        toast.success('Successfully SignUp')
+                        navigate('/login');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+                })
+    
+            };
+            
+        })
+        .catch(error=>{
+            setSignUpError(error?.message);
+        })
+        
+        
+    }
+
     return (
         <div className=''>
+
+         
+
             <Link to={'/'}>
 
                 <img className='h-60 mx-auto pt-5' src={logo} alt="" />
@@ -61,6 +115,7 @@ const SignUp = () => {
                                     className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
                                     type='text'
                                 />
+                                  {errors.name && <span className='text-red-600'>Name is required</span>}
                             </div>
                             <div className='mt-4'>
                                 <label
@@ -77,6 +132,7 @@ const SignUp = () => {
                                     className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
                                     type='email'
                                 />
+                                  {errors.email && <span className='text-red-600'>Name is required</span>}
                             </div>
 
                             <div className='mt-4'>
@@ -87,6 +143,7 @@ const SignUp = () => {
                                     Photo
                                 </label>
                                 <input type="file" {...register('image', {required: true})} className="file-input w-full" />
+                                {errors.image && <span className='text-red-600'>Photo is required</span>}
                             </div>
 
 
@@ -115,10 +172,14 @@ const SignUp = () => {
 
                                 />
                                 <button type='button' onClick={handlePasswordShow} className='absolute right-4 top-10'> {showPassword ? <FiEye /> : <FiEyeOff />}  </button>
+                                {errors.password?.type === 'required' && <p className='text-red-600'>Password is required</p>}
+                                {errors.password?.type === 'minLength' && <p className='text-red-600'>Password length must be at least 6 characters</p>}
+                    
+                                {errors.password?.type === 'pattern' && <p className='text-red-600'>Password must have one uppercase and one lowercase</p>}
 
                             </div>
                            
-
+                             {signUpError && <p className='text-red-600'>{signUpError}</p>}
                            
 
                             <div className=" form-control mt-6">

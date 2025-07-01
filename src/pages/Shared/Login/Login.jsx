@@ -5,18 +5,42 @@ import Lottie from 'react-lottie';
 
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-
+    const {signIn, googleSignIn}= useAuth();
+    const [signInError, setSignInError]= useState('');
+    const navigate = useNavigate();
     const handlePasswordShow = () => {
         setShowPassword(!showPassword);
     }
     const handleGoogleSignIn = () => {
-
+        googleSignIn()
+        .then(()=>{
+            toast.success('Successfully Google SignIn');
+            navigate('/');
+        })
     }
     const handleSignIn = (e) => {
         e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log('From Login', email, password);
+        signIn(email, password)
+        .then((userCredential)=>{
+             // Signed in 
+           const user = userCredential.user;
+           console.log(user);
+           toast.success('Successfully SignIn');
+           navigate('/');
+
+        })
+        .catch(error=>{
+            setSignInError(error.message);
+        })
+
 
     }
     return (
@@ -151,6 +175,7 @@ const Login = () => {
                                 <button type='button' onClick={handlePasswordShow} className='absolute right-4 top-10'> {showPassword ? <FiEye /> : <FiEyeOff />}  </button>
 
                             </div>
+                           
                             <div className='mt-6'>
                                 <button
                                     type='submit'
@@ -160,7 +185,8 @@ const Login = () => {
                                 </button>
                             </div>
                         </form>
-
+                        {signInError && <p className='text-red-600'>{signInError}</p>}
+                          
                         <div className='flex items-center justify-between mt-4'>
                             <span className='w-1/5 border-b  md:w-1/4'></span>
 
