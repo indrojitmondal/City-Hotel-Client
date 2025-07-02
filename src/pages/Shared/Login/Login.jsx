@@ -10,18 +10,32 @@ import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const {signIn, googleSignIn}= useAuth();
+    const {signIn, googleSignIn, logOut}= useAuth();
     const [signInError, setSignInError]= useState('');
     const navigate = useNavigate();
     const handlePasswordShow = () => {
         setShowPassword(!showPassword);
     }
     const handleGoogleSignIn = () => {
-        googleSignIn()
-        .then(()=>{
-            toast.success('Successfully Google SignIn');
-            navigate('/');
+        logOut()
+        .then(() => {
+            navigate('/login');
+            googleSignIn()
+            .then(()=>{
+               
+                toast.success('Successfully SignIn');
+                navigate('/');
+               
+    
+             
+            })
         })
+        .catch(error => {
+            console.log(error);
+        })
+          
+       
+        
     }
     const handleSignIn = (e) => {
         e.preventDefault();
@@ -33,8 +47,11 @@ const Login = () => {
              // Signed in 
            const user = userCredential.user;
            console.log(user);
-           toast.success('Successfully SignIn');
-           navigate('/');
+           
+            toast.success('Successfully SignIn');
+            navigate('/');
+           
+          
 
         })
         .catch(error=>{

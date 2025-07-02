@@ -5,6 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 const Navbar = () => {
      const {user, logOut}= useAuth();
      console.log(user); 
+     console.log(user?.photoURL);
      const navigate = useNavigate();
      const handleLogout = ()=>{
          logOut()
@@ -30,8 +31,8 @@ const Navbar = () => {
 
   {user && (
     <div className=" dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar ">
-        <div className="w-30   rounded-full">
+      <div tabIndex={0} role="button" className="btn  w-20 h-20 btn-ghost btn-circle avatar ">
+        <div className="w-full   rounded-full">
           <img 
             className=''
             alt="User Avatar"
@@ -41,7 +42,7 @@ const Navbar = () => {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-[#0E151F]  rounded-box z-1 mt-3 w-52 p-2 shadow"
+        className="menu  dropdown-content -mr-5 bg-[#0E151F] text-lg rounded-box z-1  w-52 p-2 shadow"
       >
         <li>
           <h2>{user?.displayName}</h2>
