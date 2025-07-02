@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaCar, FaDollarSign, FaMousePointer, FaHeadset } from 'react-icons/fa';
 import { Fade, Slide } from "react-awesome-reveal";
-
+import Marquee from "react-fast-marquee";
 const About = () => {
   const points = [
     {
@@ -34,7 +34,9 @@ const About = () => {
        
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
           {points.map((point, index) => (
+            <Marquee pauseOnHover='true' speed={100}>
             <div
               key={index}
               className="flex flex-col items-center bg-white p-6 shadow-lg rounded-lg"
@@ -45,7 +47,9 @@ const About = () => {
               </h3>
               <p className="text-gray-600 mt-2">{point.description}</p>
             </div>
+            </Marquee>
           ))}
+          
         </div>
       </div>
     </section>

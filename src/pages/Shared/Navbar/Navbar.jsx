@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import logo from '../../../assets/logo.png'
 import useAuth from '../../../hooks/useAuth';
 const Navbar = () => {
@@ -15,18 +15,18 @@ const Navbar = () => {
      }
     return (
         <div className="relative bg-[#0E151F] text-white flex justify-between px-5 py-2 items-center">
-      <img className='w-30 h-20' src={logo} alt="" />
+      <img className='w-40 h-30' src={logo} alt="" />
 
   <div
     
-    className="absolute left-1/2 transform -translate-x-1/2 flex gap-4 text-xl"
+    className="absolute left-1/2 transform -translate-x-1/2 flex gap-4 text-2xl "
   >
-    <Link to="/">Home</Link>
-    <Link to="/">Apartment</Link>
+    <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>Home</NavLink>
+    <NavLink to="/apartment">Apartment</NavLink>
   </div>
 
   <div>
-    {!user && <Link className='text-lg' to="/login">Login</Link>}
+    {!user && <Link className='text-2xl' to="/login">Login</Link>}
   </div>
 
   {user && (
@@ -45,7 +45,8 @@ const Navbar = () => {
         className="menu  dropdown-content -mr-5 bg-[#0E151F] text-lg rounded-box z-1  w-52 p-2 shadow"
       >
         <li>
-          <h2>{user?.displayName}</h2>
+         
+          <Link to={'/'}>{user?.displayName} </Link>
         </li>
         <li><a>Dashboard</a></li>
         <li> <button onClick={handleLogout} className='btn'>Logout</button> </li>
