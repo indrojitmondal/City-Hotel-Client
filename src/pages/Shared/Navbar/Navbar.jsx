@@ -26,7 +26,7 @@ const Navbar = () => {
   </div>
 
   <div>
-    {!user && <Link className='text-2xl' to="/login">Login</Link>}
+    {!user && <NavLink  to="/login" className={({ isActive }) => isActive ? "active text-2xl" : "text-2xl"}>Login</NavLink>}
   </div>
 
   {user && (

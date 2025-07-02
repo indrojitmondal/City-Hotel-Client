@@ -62,19 +62,19 @@ const Login = () => {
     }
     return (
         <div>
-            <Link to={'/'}>
+            {/* <Link to={'/'}>
 
                 <img className='h-60 mx-auto pt-5' src={logo} alt="" />
 
-            </Link>
+            </Link> */}
 
-            <div className='flex pt-6 justify-center'>
+            {/* <div className='flex pt-6 justify-center'>
                 <p className=' text-xl font-bold text-center text-gray-600 '>
                     Sign In <br />
 
                 </p>
 
-            </div>
+            </div> */}
       
 
             
@@ -140,7 +140,7 @@ const Login = () => {
                             </div>
 
                             <span className='w-5/6 px-4 py-3 font-bold text-center'>
-                                Sign in with Google
+                                Continue with Google
                             </span>
                         </div>
 

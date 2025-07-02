@@ -76,19 +76,19 @@ const SignUp = () => {
 
          
 
-            <Link to={'/'}>
+            {/* <Link to={'/'}>
 
                 <img className='h-60 mx-auto pt-5' src={logo} alt="" />
 
-            </Link>
+            </Link> */}
            
-            <div className='flex pt-6 justify-center'>
+            {/* <div className='flex pt-6 justify-center'>
                 <p className=' text-xl font-bold text-center text-gray-600 '>
                     Sign Up <br />
 
                 </p>
 
-            </div>
+            </div> */}
             
 
 
