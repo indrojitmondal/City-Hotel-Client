@@ -6,6 +6,7 @@ const Navbar = () => {
      const {user, logOut}= useAuth();
      console.log(user); 
      console.log(user?.photoURL);
+     
      const navigate = useNavigate();
      const handleLogout = ()=>{
          logOut()
@@ -34,10 +35,11 @@ const Navbar = () => {
       <div tabIndex={0} role="button" className="btn  w-20 h-20 btn-ghost btn-circle avatar ">
         <div className="w-full   rounded-full">
           <img 
-            className=''
+            
             alt="User Avatar"
-            src={user.photoURL}
+            src={ user?.photoURL || ''}
           />
+          
         </div>
       </div>
       <ul

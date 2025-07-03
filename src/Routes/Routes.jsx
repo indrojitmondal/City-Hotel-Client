@@ -11,6 +11,7 @@ import Main from "../Layout/Main";
 import Banner from "../components/Banner/Banner";
 import Home from "../pages/Home/Home";
 import SignUp from "../pages/Shared/Register/signUp";
+import Apartment from "../pages/Aparment/Apartment";
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/apartment',
-        element: <h2>Welcome to Apartment page</h2>
+        element: <Apartment></Apartment>
       },
       {
         path: '/login',

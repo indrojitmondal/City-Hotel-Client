@@ -5,13 +5,16 @@ import Lottie from 'react-lottie';
 
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const {signIn, googleSignIn, logOut}= useAuth();
     const [signInError, setSignInError]= useState('');
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+  
     const navigate = useNavigate();
     const handlePasswordShow = () => {
         setShowPassword(!showPassword);
@@ -24,7 +27,7 @@ const Login = () => {
             .then(()=>{
                
                 toast.success('Successfully SignIn');
-                navigate('/');
+                navigate(from, {replace: true});
                
     
              
