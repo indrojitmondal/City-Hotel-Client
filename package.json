@@ -26,6 +26,7 @@
     "react-leaflet": "^5.0.0",
     "react-loader-spinner": "^6.1.6",
     "react-lottie": "^1.2.10",
+    "react-paginate": "^8.3.0",
     "react-router": "^7.6.2",
     "sweetalert2": "^11.22.2",
     "swiper": "^11.2.8",

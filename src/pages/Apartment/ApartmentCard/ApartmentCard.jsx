@@ -73,7 +73,7 @@ const ApartmentCard = ({ apartment }) => {
     }, [user, axiosSecure]);
     return (
 
-        <div className="card bg-base-200 shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+        <div className="card bg-base-200 shadow-lg rounded-lg ">
             <figure>
                 <img
                     className='w-full h-80 object-cover'
