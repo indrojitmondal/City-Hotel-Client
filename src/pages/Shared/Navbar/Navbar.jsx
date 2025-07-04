@@ -6,7 +6,9 @@ const Navbar = () => {
      const {user, logOut}= useAuth();
      console.log(user); 
      console.log(user?.photoURL);
-     
+     if (user?.photoURL === "") {
+      console.log("Photo URL is an empty string!");
+    }
      const navigate = useNavigate();
      const handleLogout = ()=>{
          logOut()
@@ -33,10 +35,11 @@ const Navbar = () => {
   {user && (
     <div className=" dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn  w-20 h-20 btn-ghost btn-circle avatar ">
-        <div className="w-full   rounded-full">
+        <div className="w-full overflow-hidden  rounded-full">
           <img 
             
             alt="User Avatar"
+            className='w-full h-full object-cover'
             src={user.photoURL ||  'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'}
           />
           
