@@ -36,7 +36,7 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         
           {points.map((point, index) => (
-            <Marquee pauseOnHover='true' speed={100}>
+            <Marquee key={index} pauseOnHover='true' speed={100}>
             <div
               key={index}
               className="flex flex-col items-center bg-white p-6 shadow-lg rounded-lg"

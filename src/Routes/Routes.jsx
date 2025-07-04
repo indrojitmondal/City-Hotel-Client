@@ -11,7 +11,7 @@ import Main from "../Layout/Main";
 import Banner from "../components/Banner/Banner";
 import Home from "../pages/Home/Home";
 import SignUp from "../pages/Shared/Register/signUp";
-import Apartment from "../pages/Aparment/Apartment";
+import Apartment from "../pages/Apartment/Apartment";
 
 export const router = createBrowserRouter([
   {

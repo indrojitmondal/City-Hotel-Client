@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ApartmentCard from './ApartmentCard/ApartmentCard';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { Circles } from 'react-loader-spinner';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAuth from '../../hooks/useAuth';
 
 
 const Apartment = () => {
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const { isPending, error, data: apartments=[] } = useQuery({
         queryKey: ['apartments'],
         queryFn: async ()=>{
@@ -16,7 +19,12 @@ const Apartment = () => {
         }
         
       })
+      const {user}= useAuth();
+
       
+      
+
+    
     return (
         <div className='mt-3'>
              
@@ -38,7 +46,7 @@ const Apartment = () => {
              <div className='w-11/12 lg:w-10/12 mx-auto pt-5'>
              <div className='grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-3  '>
               {
-                apartments.map((apartment)=><ApartmentCard key={apartment._id} apartment={apartment}></ApartmentCard>)
+                apartments.map((apartment)=><ApartmentCard key={apartment._id}    apartment={apartment}></ApartmentCard>)
               }
             </div>
              </div>
