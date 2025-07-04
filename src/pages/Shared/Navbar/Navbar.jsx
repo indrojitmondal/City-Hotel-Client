@@ -1,11 +1,23 @@
-import React from 'react';
-import { Link, NavLink, useNavigate } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router';
 import logo from '../../../assets/logo.png'
 import useAuth from '../../../hooks/useAuth';
 const Navbar = () => {
-     const {user, logOut}= useAuth();
+     const {user, logOut, loading }= useAuth();
      console.log(user); 
      console.log(user?.photoURL);
+     const location= useLocation();
+     
+     if(loading){
+      console.log('Loading');
+     }
+
+     const [image, setImage]=useState('https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp')
+
+     useEffect(()=>{
+         setImage(user?.photoURL);
+     },[user, loading, logOut, location])
+     
      if (user?.photoURL === "") {
       console.log("Photo URL is an empty string!");
     }
@@ -36,12 +48,18 @@ const Navbar = () => {
     <div className=" dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn  w-20 h-20 btn-ghost btn-circle avatar ">
         <div className="w-full overflow-hidden  rounded-full">
-          <img 
-            
-            alt="User Avatar"
-            className='w-full h-full object-cover'
-            src={user.photoURL ||  'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'}
-          />
+            {/* Add these console logs here */}
+            {console.log("Inside user block - user:", user)}
+                {console.log("Inside user block - user.photoURL:", user.photoURL)}
+                {console.log("Inside user block - typeof user.photoURL:", typeof user.photoURL)}
+                {console.log("Inside user block - user.photoURL === '' :", user.photoURL === '')}
+                {console.log("Inside user block - user.photoURL?.length:", user.photoURL?.length)}
+                 
+                <img
+                    alt="User Avatar"
+                    className='w-full h-full object-cover'
+                    src={image}
+                />
           
         </div>
       </div>
