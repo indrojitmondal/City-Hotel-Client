@@ -15,6 +15,7 @@ import Apartment from "../pages/Apartment/Apartment";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import DashboardLayout from "../Layout/DashboardLayout";
 import MyProfile from "../pages/Dashboard/MyProfile";
+import MakePayment from "../pages/Dashboard/MakePayment";
 
 export const router = createBrowserRouter([
   {
@@ -53,8 +54,16 @@ export const router = createBrowserRouter([
           },
           {
             path: '/dashboard/make-payment',
-            element : <h2>From Payment Page</h2>
+            element : <MakePayment></MakePayment>
 
+          },
+          {
+            path: '/dashboard/payment-history',
+            element: <h2>Payment History</h2>
+          },
+          {
+            path: '/dashboard/checkout',
+            element: <h2>Payment</h2>
           }
 
         ]

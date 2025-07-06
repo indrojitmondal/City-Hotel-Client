@@ -20,18 +20,7 @@ const Dashboard = () => {
                         🧙‍♂️ My Profile
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink
-                        className={({ isActive }) =>
-                            isActive
-                                ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
-                                : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
-                        }
-                        to={'/dashboard/announcements'}
-                    >
-                        📜 Announcements
-                    </NavLink>
-                </li>
+               
                 {agreement?.length>0 && <>
                     <li>
                     <NavLink
@@ -44,8 +33,32 @@ const Dashboard = () => {
                     >
                         💰 Make payment
                     </NavLink>
-                </li>
+                    </li>
+                    <li>
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
+                                : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
+                        }
+                        to={'/dashboard/payment-history'}
+                    >
+                        🧾 Payment History
+                    </NavLink>
+                    </li>
                 </>}
+                <li>
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
+                                : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
+                        }
+                        to={'/dashboard/announcements'}
+                    >
+                        📜 Announcements
+                    </NavLink>
+                </li>
             </ul>
         </div>
     );
