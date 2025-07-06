@@ -18,6 +18,10 @@ const ApartmentCard = ({ apartment }) => {
             navigate('/login', { state: { from: location } });
             return;
         }
+        const today = new Date();
+        const formattedDate = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}/${today.getFullYear()}`;
 
         const agreementData = {
             apartmentImage: apartment.apartmentImage,
@@ -27,7 +31,8 @@ const ApartmentCard = ({ apartment }) => {
             rent: apartment.rent,
             email: user.email,
             userName: user.displayName, // Include user name
-            status: 'pending'
+            status: 'pending',
+            acceptDate: formattedDate,
         };
 
         try {

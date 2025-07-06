@@ -22,7 +22,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
      <AuthProvider>
      <QueryClientProvider client={queryClient}>
-     <RouterProvider router={router} />
+    
+            <RouterProvider router={router} />
+          
      <Toaster position='top-right' />
      </QueryClientProvider>
      </AuthProvider>

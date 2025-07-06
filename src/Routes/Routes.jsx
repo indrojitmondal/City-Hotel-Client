@@ -12,6 +12,9 @@ import Banner from "../components/Banner/Banner";
 import Home from "../pages/Home/Home";
 import SignUp from "../pages/Shared/Register/signUp";
 import Apartment from "../pages/Apartment/Apartment";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import DashboardLayout from "../Layout/DashboardLayout";
+import MyProfile from "../pages/Dashboard/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +37,22 @@ export const router = createBrowserRouter([
       {
         path: '/signUp',
         element: <SignUp></SignUp>
+      },
+      {
+        path: '/dashboard',
+        element: <DashboardLayout></DashboardLayout>,
+        children: [
+          {
+             path: '/dashboard/my-profile',
+             element: <MyProfile></MyProfile>
+          },
+          {
+            path: '/dashboard/announcements',
+            element: <h2 className="p-4">Welcome to Announcement page</h2>
+
+          }
+
+        ]
       }
     ]
   },
