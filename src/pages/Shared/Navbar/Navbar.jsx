@@ -73,7 +73,7 @@ const Navbar = () => {
 
               <Link to={'/'}>{user?.displayName} </Link>
             </li>
-            <li>  <NavLink to="/dashboard" className={({ isActive }) => isActive ? "active" : ""}>Dashboard</NavLink>
+            <li>  <NavLink to="/dashboard/my-profile" className={({ isActive }) => isActive ? "active" : ""}>Dashboard</NavLink>
         </li>
             <li> <button onClick={handleLogout} className='btn'>Logout</button> </li>
           </ul>

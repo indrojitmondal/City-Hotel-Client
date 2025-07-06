@@ -50,6 +50,11 @@ export const router = createBrowserRouter([
             path: '/dashboard/announcements',
             element: <h2 className="p-4">Welcome to Announcement page</h2>
 
+          },
+          {
+            path: '/dashboard/make-payment',
+            element : <h2>From Payment Page</h2>
+
           }
 
         ]
