@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router';
 import logo from '../../../assets/logo.png'
 import useAuth from '../../../hooks/useAuth';
+import useAdmin from '../../../hooks/useAdmin';
 const Navbar = () => {
   const { user, logOut, loading } = useAuth();
   console.log(user);
+  const [isAdmin]= useAdmin();
   console.log(user?.photoURL);
   const location = useLocation();
 
@@ -72,9 +74,16 @@ const Navbar = () => {
             <li>
 
               <Link to={'/'}>{user?.displayName} </Link>
+          
             </li>
+            {!isAdmin &&
             <li>  <NavLink to="/dashboard/my-profile" className={({ isActive }) => isActive ? "active" : ""}>Dashboard</NavLink>
         </li>
+        }
+        { isAdmin&&
+        <li>  <NavLink to="/dashboard/admin-profile" className={({ isActive }) => isActive ? "active" : ""}>Dashboard</NavLink>
+        </li>
+        }
             <li> <button onClick={handleLogout} className='btn'>Logout</button> </li>
           </ul>
         </div>

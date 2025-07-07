@@ -9,6 +9,7 @@ import registerLottieAnimation from './registerLottifie.json'
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
 const image_hosting_key=import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const SignUp = () => {
@@ -50,6 +51,25 @@ const SignUp = () => {
                 console.log(menuItem);
                 updateUserProfile(menuItem.name, menuItem.image)
                 .then(()=>{
+                    const userInfo={
+                        name: data.name,
+                        email: data.email
+                    }
+                    axiosPublic.post('/users',userInfo)
+                    .then(res=>{
+                        if(res.data.insertedId){
+
+                            console.log('user added to the database');
+                            reset();
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "User created successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
                       
                     logOut()
                     .then(() => {

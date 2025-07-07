@@ -8,13 +8,14 @@ import { FiEyeOff } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const {signIn, googleSignIn, logOut}= useAuth();
     const [signInError, setSignInError]= useState('');
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-  
+    const axiosPublic= useAxiosPublic();
     const navigate = useNavigate();
     const handlePasswordShow = () => {
         setShowPassword(!showPassword);
@@ -22,12 +23,24 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         logOut()
         .then(() => {
-            navigate('/login');
+            
             googleSignIn()
-            .then(()=>{
+            .then((result)=>{
+
+
+                const userInfo={
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', userInfo)
+                .then(res=>{
+                    console.log(res.data);
+                  
+                    toast.success('Successfully SignIn');
+                    navigate(from, {replace: true});
+                })
                
-                toast.success('Successfully SignIn');
-                navigate(from, {replace: true});
+             
                
     
              
@@ -52,7 +65,8 @@ const Login = () => {
            console.log(user);
            
             toast.success('Successfully SignIn');
-            navigate('/');
+            // navigate('/');
+            navigate(from, {replace: true});
            
           
 
