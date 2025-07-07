@@ -48,7 +48,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="mt-8 border-t border-gray-700 pt-4 text-center text-lg text-gray-500">
-        © {new Date().getFullYear()} Indrojit Mondal. All rights reserved.
+        © {new Date().getFullYear()} CITY HOTEL. All rights reserved.
       </div>
     </footer>
   );

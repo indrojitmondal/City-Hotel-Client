@@ -47,7 +47,7 @@ const AdminDashboard = () => {
                                 ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
                                 : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
                         }
-                        to={'/dashboard/make-announcement'}
+                        to={'/dashboard/make-announcements'}
                     >
                         📢📝 Make Announcement
                     </NavLink>
@@ -60,7 +60,7 @@ const AdminDashboard = () => {
                                 ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
                                 : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
                         }
-                        to={'/dashboard/agreement-request'}
+                        to={'/dashboard/agreement-requests'}
                     >
                         🤝📄 Agreement Requests
                     </NavLink>
@@ -73,7 +73,7 @@ const AdminDashboard = () => {
                                 ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
                                 : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
                         }
-                        to={'/dashboard/agreement-request'}
+                        to={'/dashboard/manage-coupons'}
                     >
                        🏷️🛠️ Manage Coupons
                     </NavLink>

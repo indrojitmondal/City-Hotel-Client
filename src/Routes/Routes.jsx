@@ -19,6 +19,14 @@ import MakePayment from "../pages/Dashboard/MakePayment";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard";
+import AdminProfile from "../pages/Dashboard/AdminProfile";
+import Announcements from "../pages/Dashboard/Announcements";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory";
+import CheckOut from "../pages/Dashboard/CheckOut";
+import ManageMembers from "../pages/Dashboard/ManageMembers";
+import AgreementRequests from "../pages/Dashboard/AgreementRequests";
+import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement";
+import ManageCoupons from "../pages/Dashboard/ManageCoupons";
 
 export const router = createBrowserRouter([
   {
@@ -53,11 +61,29 @@ export const router = createBrowserRouter([
           },
           {
             path: '/dashboard/admin-profile',
-            element: <AdminRoute> <h2>Welcome from Admin Profile</h2> </AdminRoute>
+            element: <AdminRoute> <AdminProfile></AdminProfile> </AdminRoute>
+          },
+          
+          {
+            path: '/dashboard/manage-members',
+            element: <AdminRoute> <ManageMembers></ManageMembers> </AdminRoute>
           },
           {
+            path: '/dashboard/agreement-requests',
+            element: <AdminRoute> <AgreementRequests></AgreementRequests> </AdminRoute>
+          },
+          {
+            path: '/dashboard/make-announcements',
+            element: <AdminRoute> <MakeAnnouncement></MakeAnnouncement> </AdminRoute>
+          },
+          {
+            path: '/dashboard/manage-coupons',
+            element: <AdminRoute> <ManageCoupons></ManageCoupons> </AdminRoute>
+          },
+          
+          {
             path: '/dashboard/announcements',
-            element: <PrivateRoute><h2 className="p-4">Welcome to Announcement page</h2></PrivateRoute>
+            element: <PrivateRoute><Announcements></Announcements></PrivateRoute>
 
           },
           {
@@ -67,11 +93,11 @@ export const router = createBrowserRouter([
           },
           {
             path: '/dashboard/payment-history',
-            element: <PrivateRoute><h2>Payment History</h2></PrivateRoute>
+            element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
           },
           {
             path: '/dashboard/checkout',
-            element: <PrivateRoute><h2>Payment</h2></PrivateRoute>
+            element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>
           }
 
         ]

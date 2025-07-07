@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router';
-import logo from '../../../assets/logo.png'
+import logo from '/logo.png'
 import useAuth from '../../../hooks/useAuth';
 import useAdmin from '../../../hooks/useAdmin';
 const Navbar = () => {
@@ -32,7 +32,7 @@ const Navbar = () => {
       })
   }
   return (
-    <div className="relative bg-[#0E151F] text-white flex justify-between px-5 py-2 items-center">
+    <div className="relative bg-gradient-to-b from-[#2e1a47] to-[#0E151F]  text-white flex justify-between px-5 py-2 items-center">
       <img className='w-20 h-20 md:w-40 md:h-30' src={logo} alt="" />
 
       <div
@@ -69,7 +69,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu  dropdown-content -mr-5 bg-[#0E151F] text-lg rounded-box z-1  w-52 p-2 shadow"
+            className="menu  dropdown-content -mr-5 bg-gradient-to-b from-[#2e1a47] to-[#0E151F]  text-lg rounded-box z-1  w-52 p-2 shadow"
           >
             <li>
 
