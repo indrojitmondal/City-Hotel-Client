@@ -27,8 +27,8 @@ const About = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-[#1c102d] to-[#0E151F] text-white py-16 px-6">
-      <div className="max-w-7xl mx-auto text-center">
+    <section className="bg-gradient-to-b from-[#1c102d] to-white text-white py-16 px-6">
+      <div className="max-w-7xl  mx-auto text-center">
         <Fade direction="down" triggerOnce>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-8 tracking-wide">
             About the Building

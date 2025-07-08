@@ -10,7 +10,7 @@ const coupons = [
 
 const CouponSection = () => {
   return (
-    <section className="bg-gradient-to-b from-[#1c102d] to-[#0E151F] text-white py-16 px-6">
+    <section className="bg-gradient-to-b from-[#1c102d] to-white text-white py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <Slide direction="down" triggerOnce>
           <h2 className="text-4xl font-extrabold text-center mb-12 tracking-wide">

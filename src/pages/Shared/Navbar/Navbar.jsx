@@ -69,7 +69,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu  dropdown-content -mr-5 bg-gradient-to-b from-[#2e1a47] to-[#0E151F]  text-lg rounded-box z-1  w-52 p-2 shadow"
+            className="menu   dropdown-content -mr-5 bg-gradient-to-b from-[#2e1a47] to-[#0E151F]  text-lg rounded-box z-1 w-60 p-2 shadow"
           >
             <li>
 
