@@ -33,17 +33,18 @@ const ApartmentCard = ({ apartment }) => {
             userName: user.displayName, // Include user name
             status: 'pending',
             acceptDate: formattedDate,
+             
         };
 
         try {
             const res = await axiosSecure.post('/agreement', agreementData);
-            const res2= await axiosSecure.patch(`/users/${user?.email}`)
+            //const res2= await axiosSecure.patch(`/users/${user?.email}`)
             console.log(res.data);
-            console.log(res2.data);
+           // console.log(res2.data);
             
             if (res.data.insertedId) {
                 Swal.fire({
-                    title: `${apartment.apartmentNo} is successfully agreed!`,
+                    title: `${apartment.apartmentNo} is successfully agreed and wait for admin checking!`,
                     icon: "success"
                 });
             }

@@ -42,7 +42,7 @@ const MyProfile = () => {
                         <div className="mt-6">
                            
                              {isMemberLoading && <Loader></Loader>}
-                             {isMember &&  
+                             
                              <>
                                <h3 className="text-2xl text-[#fcd34d] font-semibold mb-4">📜 Your Agreement</h3>
                             
@@ -70,6 +70,7 @@ const MyProfile = () => {
                                                     <p className="mt-2">🧱 Floor No: <span className="text-[#e0f2fe]">{agreement[0]?.floorNo}</span></p>
                                                     <p>🏰 Block Name: <span className="text-[#e0f2fe]">{agreement[0]?.blockName}</span></p>
                                                     <p>💰 Rent: <span className="text-[#f87171]">{agreement[0]?.rent} Tk.</span></p>
+                                                    <p>🟡 Status: <span className="text-[#e0f2fe]">{agreement[0]?.status} </span></p>
                                                 </div>
                                             </div>
                                         </>
@@ -79,7 +80,7 @@ const MyProfile = () => {
                                 </div>
                             </div> 
                             </>
-                             }
+                             
                             
                             
                         </div>
