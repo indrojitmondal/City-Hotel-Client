@@ -1,17 +1,28 @@
 import React from 'react';
 import { NavLink } from 'react-router';
-import useAgreement from '../../hooks/useAgreement';
+import useAgreement from '../../../hooks/useAgreement';
+import useMember from '../../../hooks/useMember';
+import Loader from '../../../components/Loader/Loader';
 
 
-
-const AdminDashboard = () => {
-
-
+const UserDashboard = () => {
+    const [agreement, isAgreementPending]= useAgreement();
+    console.log(agreement);
+    const [isMember, isMemberLoading]= useMember();
+    console.log(isMember);
+    
     return (
         <div className="min-h-screen bg-gradient-to-b from-[#2e1a47] to-[#000000] text-white border-l-4 border-[#CEA86E] shadow-xl p-4">
+            {isMemberLoading || isAgreementPending? <Loader></Loader> :  
+              
+            
+            
+            
             <ul className="menu rounded-box  bg-[#1f1433] shadow-2xl p-4 space-y-4 border border-[#CEA86E]">
-              
                
+               
+               
+                <>
                 
                 <li>
                     <NavLink
@@ -20,13 +31,38 @@ const AdminDashboard = () => {
                                 ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
                                 : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
                         }
-                        to={'/dashboard/admin-profile'}
+                        to={'/dashboard/my-profile'}
                     >
-                        🧙‍♂️ Admin Profile
+                        🧙‍♂️ My Profile
                     </NavLink>
                 </li>
                
-               
+                {isMember && <>
+                    <li>
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
+                                : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
+                        }
+                        to={'/dashboard/make-payment'}
+                    >
+                        💰 Make payment
+                    </NavLink>
+                    </li>
+                    <li>
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
+                                : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
+                        }
+                        to={'/dashboard/payment-history'}
+                    >
+                        🧾 Payment History
+                    </NavLink>
+                    </li>
+                </>}
                 <li>
                     <NavLink
                         className={({ isActive }) =>
@@ -34,58 +70,19 @@ const AdminDashboard = () => {
                                 ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
                                 : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
                         }
-                        to={'/dashboard/manage-members'}
+                        to={'/dashboard/announcements'}
                     >
-                        👥🛠️ Manage Members
+                        📜 Announcements
                     </NavLink>
                 </li>
-
-                <li>
-                    <NavLink
-                        className={({ isActive }) =>
-                            isActive
-                                ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
-                                : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
-                        }
-                        to={'/dashboard/make-announcements'}
-                    >
-                        📢📝 Make Announcement
-                    </NavLink>
-                </li>
-
-                <li>
-                    <NavLink
-                        className={({ isActive }) =>
-                            isActive
-                                ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
-                                : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
-                        }
-                        to={'/dashboard/agreement-requests'}
-                    >
-                        🤝📄 Agreement Requests
-                    </NavLink>
-                </li>
-
-                <li>
-                    <NavLink
-                        className={({ isActive }) =>
-                            isActive
-                                ? "text-xl font-bold text-[#facc15] bg-[#3c2b50] p-2 rounded-lg shadow-inner border border-[#d6bb7a] transition-all duration-300"
-                                : "text-xl text-[#d4d4d8] hover:text-[#facc15] hover:bg-[#2d1c3a] p-2 rounded-lg transition-all duration-300"
-                        }
-                        to={'/dashboard/manage-coupons'}
-                    >
-                       🏷️🛠️ Manage Coupons
-                    </NavLink>
-                </li>
-               
-                
-               
+                </>
               
+            
                
             </ul>
+            }
         </div>
     );
 };
 
-export default AdminDashboard;
+export default UserDashboard;

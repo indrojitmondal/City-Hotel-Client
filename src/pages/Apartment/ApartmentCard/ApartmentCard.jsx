@@ -37,8 +37,10 @@ const ApartmentCard = ({ apartment }) => {
 
         try {
             const res = await axiosSecure.post('/agreement', agreementData);
+            const res2= await axiosSecure.patch(`/users/${user?.email}`)
             console.log(res.data);
-
+            console.log(res2.data);
+            
             if (res.data.insertedId) {
                 Swal.fire({
                     title: `${apartment.apartmentNo} is successfully agreed!`,

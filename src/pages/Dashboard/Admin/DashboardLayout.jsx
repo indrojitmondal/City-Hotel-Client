@@ -1,8 +1,9 @@
 import React from 'react';
-import UserDashboard from '../pages/Dashboard/UserDashboard';
+
 import { Outlet } from 'react-router';
-import useAdmin from '../hooks/useAdmin';
-import AdminDashboard from '../pages/Dashboard/AdminDashboard';
+import useAdmin from '../../../hooks/useAdmin';
+import AdminDashboard from './AdminDashboard';
+import UserDashboard from '../User/UserDashboard';
 
 const DashboardLayout = ({children}) => {
     const [isAdmin] = useAdmin();

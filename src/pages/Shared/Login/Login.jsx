@@ -27,10 +27,11 @@ const Login = () => {
             googleSignIn()
             .then((result)=>{
 
-
+                
                 const userInfo={
                     email: result.user?.email,
-                    name: result.user?.displayName
+                    name: result.user?.displayName,
+                    role: 'user'
                 }
                 axiosPublic.post('/users', userInfo)
                 .then(res=>{
@@ -64,9 +65,15 @@ const Login = () => {
            const user = userCredential.user;
            console.log(user);
            
-            toast.success('Successfully SignIn');
+
+          
+
+           toast.success('Successfully SignIn');
             // navigate('/');
             navigate(from, {replace: true});
+
+           
+            
            
           
 

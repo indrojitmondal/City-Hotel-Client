@@ -12,21 +12,21 @@ import Banner from "../components/Banner/Banner";
 import Home from "../pages/Home/Home";
 import SignUp from "../pages/Shared/Register/signUp";
 import Apartment from "../pages/Apartment/Apartment";
-import Dashboard from "../pages/Dashboard/UserDashboard";
-import DashboardLayout from "../Layout/DashboardLayout";
-import MyProfile from "../pages/Dashboard/MyProfile";
-import MakePayment from "../pages/Dashboard/MakePayment";
+import Dashboard from "../pages/Dashboard/User/UserDashboard";
+import DashboardLayout from "../pages/Dashboard/Admin/DashboardLayout";
+import MyProfile from "../pages/Dashboard/User/MyProfile";
+import MakePayment from "../pages/Dashboard/User/MakePayment";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
-import AdminDashboard from "../pages/Dashboard/AdminDashboard";
-import AdminProfile from "../pages/Dashboard/AdminProfile";
-import Announcements from "../pages/Dashboard/Announcements";
-import PaymentHistory from "../pages/Dashboard/PaymentHistory";
-import CheckOut from "../pages/Dashboard/CheckOut";
-import ManageMembers from "../pages/Dashboard/ManageMembers";
-import AgreementRequests from "../pages/Dashboard/AgreementRequests";
-import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement";
-import ManageCoupons from "../pages/Dashboard/ManageCoupons";
+import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
+import AdminProfile from "../pages/Dashboard/Admin/AdminProfile";
+import Announcements from "../pages/Dashboard/User/Announcements";
+import PaymentHistory from "../pages/Dashboard/User/PaymentHistory";
+import CheckOut from "../pages/Dashboard/User/CheckOut";
+import ManageMembers from "../pages/Dashboard/Admin/ManageMembers";
+import AgreementRequests from "../pages/Dashboard/Admin/AgreementRequests";
+import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement";
+import ManageCoupons from "../pages/Dashboard/Admin/ManageCoupons";
 
 export const router = createBrowserRouter([
   {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 // your custom hook
 import { useNavigate } from 'react-router';
-import useAgreement from '../../hooks/useAgreement';
+import useAgreement from '../../../hooks/useAgreement';
 
 const MakePayment = () => {
     const [agreement] = useAgreement();

@@ -7,14 +7,14 @@ const useAgreement = () => {
     const axiosSecure = useAxiosSecure();
     const {user}= useAuth();
 
-    const { isPending, error, data: agreement = [] } = useQuery({
+    const { isPending: isAgreementPending, error, data: agreement = [] } = useQuery({
         queryKey: ['agreement'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/agreement?email=${user?.email}`);
             return res.data;
         }
     });
-    return [agreement, isPending, error];
+    return [agreement, isAgreementPending, error];
 };
 
 export default useAgreement;

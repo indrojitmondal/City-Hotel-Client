@@ -1,8 +1,8 @@
 import React from 'react';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import Agreement from '../../components/Agreement/Agreement';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Agreement from '../../../components/Agreement/Agreement';
 import { Circles } from 'react-loader-spinner';
 
 const MyProfile = () => {

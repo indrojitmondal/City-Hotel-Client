@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
-import useAuth from '../../hooks/useAuth';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAuth from '../../../hooks/useAuth';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
-import Loader from '../../components/Loader/Loader';
+import Loader from '../../../components/Loader/Loader';
 // import adminImage from '../../assets/admin-wizard.png'; // fantasy wizard style image
 
 const data = [
