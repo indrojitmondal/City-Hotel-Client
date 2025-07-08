@@ -40,13 +40,23 @@ const ManageMembers = () => {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!"
-      }).then((result) => {
+      }).then(async(result) => {
         if (result.isConfirmed) {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success"
-          });
+         console.log('Deleted ID: ', id);
+         try {
+            const res = await axiosSecure.patch(`/members/${id}`);
+            console.log('Patch result:', res.data); // Check here!
+            refetch(); 
+            Swal.fire({ title: 'Deleted!', text: 'User removed.', icon: 'success' });
+          } catch (error) {
+            console.error(error);
+            Swal.fire({
+              title: 'Error!',
+              text: error?.response?.data?.message || error.message,
+              icon: 'error',
+            });
+          }
+       
         }
       });
 };
@@ -70,7 +80,7 @@ const ManageMembers = () => {
           </thead>
           <tbody>
             {members?.map((member) => (
-              <tr key={member.id} className="hover:bg-purple-600 hover:bg-opacity-20 transition duration-300">
+              <tr key={member._id} className="hover:bg-purple-600 hover:bg-opacity-20 transition duration-300">
                 <td className="px-6 py-4 flex items-center gap-2">
                   <FaUserAlt className="text-yellow-300" />
                   <span>{member.name}</span>
@@ -78,7 +88,7 @@ const ManageMembers = () => {
                 <td className="px-6 py-4">{member.email}</td>
                 <td className="px-6 py-4 text-center">
                   <button
-                    onClick={() => handleRemove(member.id)}
+                    onClick={() => handleRemove(member._id)}
                     className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition duration-300"
                   >
                     <FaTrash className="inline-block mr-1" /> Remove
