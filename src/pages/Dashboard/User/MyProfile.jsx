@@ -4,10 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Agreement from '../../../components/Agreement/Agreement';
 import { Circles } from 'react-loader-spinner';
+import useMember from '../../../hooks/useMember';
+import Loader from '../../../components/Loader/Loader';
 
 const MyProfile = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const [isMember, isMemberLoading] = useMember();
 
     const { isPending, error, data: agreement = [] } = useQuery({
         queryKey: ['agreement'],
@@ -20,9 +23,9 @@ const MyProfile = () => {
     return (
         <div className="min-h-screen bg-gradient-to-r from-[#1a103d] via-[#301934] to-[#1f1b2e] text-white p-8 font-serif">
             {
-                isPending ? <div className="flex justify-center items-center h-40">
-                    <Circles height="80" width="80" color="#facc15" ariaLabel="loading" />
-                </div> :
+                isPending ? 
+                <Loader></Loader>
+                :
                     <div className="max-w-4xl mx-auto bg-[#2d1c3a] border border-[#c084fc] rounded-2xl shadow-xl p-8 space-y-6">
                         <div className="flex flex-col md:flex-row items-center gap-8">
                             <img
@@ -37,10 +40,13 @@ const MyProfile = () => {
                         </div>
 
                         <div className="mt-6">
-                            <h3 className="text-2xl text-[#fcd34d] font-semibold mb-4">📜 Your Agreement</h3>
-                            {isPending ? (
-                                <p className="text-center text-[#c4b5fd]">Loading agreement...</p>
-                            ) : (<div className="min-h-screen px-6 py-10 bg-gradient-to-br from-[#1e1b4b] via-[#3b0764] to-[#111827] text-white font-serif">
+                           
+                             {isMemberLoading && <Loader></Loader>}
+                             {isMember &&  
+                             <>
+                               <h3 className="text-2xl text-[#fcd34d] font-semibold mb-4">📜 Your Agreement</h3>
+                            
+                            <div className="min-h-screen px-6 py-10 bg-gradient-to-br from-[#1e1b4b] via-[#3b0764] to-[#111827] text-white font-serif">
                                 <div className="max-w-3xl mx-auto bg-[#2a183d] rounded-xl shadow-2xl border border-[#d6bb7a] p-8">
                                     <h2 className="text-2xl font-bold text-[#facc15] mb-4">🧾 Agreement Details</h2>
 
@@ -71,8 +77,11 @@ const MyProfile = () => {
                                         <p className="text-red-400 mt-4">❌ No agreement found for your account.</p>
                                     )}
                                 </div>
-                            </div>)
-                            }
+                            </div> 
+                            </>
+                             }
+                            
+                            
                         </div>
                     </div>
             }
