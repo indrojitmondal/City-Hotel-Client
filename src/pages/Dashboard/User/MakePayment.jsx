@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 // your custom hook
 import { useNavigate } from 'react-router';
 import useAgreement from '../../../hooks/useAgreement';
+import useCoupons from '../../../hooks/useCoupons';
+import Loader from '../../../components/Loader/Loader';
 
 const MakePayment = () => {
     const [agreement] = useAgreement();
@@ -10,6 +12,7 @@ const MakePayment = () => {
     const [finalRent, setFinalRent] = useState(agreement[0]?.rent || 0);
     const [couponMessage, setCouponMessage] = useState('');
     const [couponApplied, setCouponApplied] = useState(false);
+    const [coupons, isCouponsPending]=useCoupons();
     useEffect(()=>{
       setFinalRent(agreement[0]?.rent || 0);
     },[agreement])
@@ -25,7 +28,7 @@ const MakePayment = () => {
             ...data,
             rent: finalRent,
             apartmentId: agreement[0]?._id,
-            status: 'pending',
+            status: 'checked',
         };
         console.log('Redirecting with:', paymentData);
         // Replace with your actual payment route logic
@@ -36,16 +39,26 @@ const MakePayment = () => {
         const code = document.getElementById('couponCode').value.trim();
 
         // Example static coupons
-        const coupons = {
-            SAVE20: 20,
-            HOTEL10: 10,
-            SUMMER25: 50
-        };
+        // const coupons = {
+        //     SAVE20: 20,
+        //     HOTEL10: 10,
+        //     SUMMER25: 50
+        // };
 
-        if (coupons[code]) {
-            const discount = (agreement[0]?.rent * coupons[code]) / 100;
+        const newCoupons = coupons.reduce((acc, item) => {
+            // Extract numeric value from discount string like "30%"
+            const discountNumber = parseInt(item.discount);
+            acc[item.code] = discountNumber;
+            return acc;
+        }, {});
+        
+
+        console.log('Hello coupons: ', coupons);
+
+        if (newCoupons[code]) {
+            const discount = (agreement[0]?.rent * newCoupons[code]) / 100;
             setFinalRent(agreement[0]?.rent - discount);
-            setCouponMessage(`✅ Coupon applied! ${coupons[code]}% off.`);
+            setCouponMessage(`✅ Coupon applied! ${newCoupons[code]}% off.`);
             setCouponApplied(true);
         } else {
             setCouponMessage('❌ Invalid coupon code.');
@@ -56,6 +69,10 @@ const MakePayment = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-r from-[#1e1b4b] via-[#3b0764] to-[#111827] text-white p-8">
+           
+            {isCouponsPending?
+             <Loader></Loader> : 
+           
             <div className="max-w-3xl mx-auto bg-[#2d1c3a] rounded-xl shadow-2xl border border-[#d6bb7a] p-8 space-y-6 font-serif">
                 <h2 className="text-3xl font-bold text-center text-[#facc15]">💠 Make Payment</h2>
 
@@ -127,7 +144,8 @@ const MakePayment = () => {
                         </button>
                     </div>
                 </form>
-            </div>
+            </div> 
+            }
         </div>
     );
 };

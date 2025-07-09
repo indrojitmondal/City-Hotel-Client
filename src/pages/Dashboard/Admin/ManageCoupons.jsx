@@ -3,19 +3,21 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const ManageCoupons = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   // Fetch coupons
 
  
   const {data: coupons=[], isPending, refetch}=useQuery({
     queryKey: ['coupons'],
     queryFn: async()=>{
-        const res= await axiosSecure.get('/coupons');
+        const res= await axiosPublic.get('/coupons');
         return res.data;
     }
   })
