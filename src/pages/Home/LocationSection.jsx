@@ -4,7 +4,7 @@ import img1 from '../../components/Banner/images/2.jpg';
 
 const LocationSection = () => {
   return (
-    <section className="bg-[#0E151F] text-white py-16 px-4 sm:px-6 md:px-12 lg:px-20">
+    <section className="bg-gradient-to-b from-[#1c102d] to-white text-white py-16 px-4 sm:px-6 md:px-12 lg:px-20">
       <h2 className="text-4xl font-extrabold text-center mb-14 tracking-wide">
         📍 Our Location
       </h2>
