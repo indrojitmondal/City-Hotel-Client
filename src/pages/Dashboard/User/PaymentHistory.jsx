@@ -49,7 +49,8 @@ const PaymentHistory = () => {
           </tbody>
         </table>
       </div>
-    }
+    } 
+    {/* ok */}
 
     </div>
   );
