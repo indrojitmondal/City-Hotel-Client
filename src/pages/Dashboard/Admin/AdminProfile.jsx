@@ -41,9 +41,9 @@ const AdminProfile = () => {
          const percentVal = (available_Rooms*100)/total_Rooms;
         const percentCal= percentVal.toFixed(2);
         setAvailableRooms(percentCal);
-        // Percentage of Agreement calculation
-        const total_Agreements= adminStats?.agreements;
-        const percentAgreement= (total_Agreements*100)/total_Rooms;
+        // Percentage of Unavailable Rooms calculation
+        const total_unavailableRooms= adminStats?.unavailableRooms;
+        const percentAgreement= (total_unavailableRooms*100)/total_Rooms;
         const percentAgreementCal= percentAgreement.toFixed(2);
         seUnAvailableRooms(percentAgreementCal);
 
