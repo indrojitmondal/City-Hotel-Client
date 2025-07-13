@@ -38,7 +38,7 @@ const ApartmentCard = ({ apartment }) => {
 
         try {
             const res = await axiosSecure.post('/agreement', agreementData);
-            //const res2= await axiosSecure.patch(`/users/${user?.email}`)
+           // const res2= await axiosSecure.patch(`/users/${user?.email}`)
             console.log(res.data);
            // console.log(res2.data);
             
