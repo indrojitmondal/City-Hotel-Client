@@ -23,6 +23,8 @@ const MakePayment = () => {
         formState: { errors }
     } = useForm();
 
+ 
+
     const onSubmit = data => {
         const paymentData = {
             ...data,
@@ -136,11 +138,12 @@ const MakePayment = () => {
                     {couponMessage && <p className={`text-sm ${couponApplied ? 'text-green-400' : 'text-red-400'}`}>{couponMessage}</p>}
 
                     <div className="text-center mt-6">
-                        <button
+                        <button disabled={!finalRent}
                             type="submit"
                             className="bg-gradient-to-r from-[#facc15] to-[#fcd34d] text-black font-bold px-6 py-3 rounded-lg shadow-md hover:scale-105 transition"
                         >
-                            💳 Pay
+                            💳 Pay 
+                            
                         </button>
                     </div>
                 </form>
